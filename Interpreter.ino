@@ -59,14 +59,14 @@ void loop() {
       break;
 
       case '.':
-      Serial.print(String(tape[tapePointer]));
+      Serial.print(char(tape[tapePointer]));
       codePointer++;
       break;
 
       case ',':
       Serial.flush();
       while(!Serial.available());
-      tape[tapePointer] = char(Serial.parseInt());
+      tape[tapePointer] = char(Serial.read());
       codePointer++;
       break;
       
