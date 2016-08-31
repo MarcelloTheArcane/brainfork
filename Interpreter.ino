@@ -3,10 +3,10 @@
  *  - tape--, codePointer++
  *  > tapePointer++, codePointer++
  *  < tapePointer--, codePointer++
- *  [ if tape[tapePointer] = 0 { while code[codePointer] != ']' { codePointer++ }} else { codePointer++ }
- *  ] if tape[tapePointer] = 0 { codePointer++ } else { j = -1;
- *  . Serial.print(String(tape[tapePointer])), codePointer++
- *  , Serial.flush(); while(!Serial.available()); tape[tapePointer] = Serial.read();, codePointer++
+ *  [ if tape[tapePointer] = 0, find matching ']' and go past it. else carry on.
+ *  ] if tape[tapePointer] = 0, carry on, else loop back to matching '['
+ *  . print current number as char
+ *  , input number/char
  */
 
 char code[512] = {'+', '>', '+', '<', '+', '+', '.', '>', '>', ',', '.'};  //This is not a profound and pithy brainfuck statement.
