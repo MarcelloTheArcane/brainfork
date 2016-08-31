@@ -9,10 +9,9 @@
  *  , Serial.flush(); while(!Serial.available()); tape[tapePointer] = Serial.read();, codePointer++
  */
 
-char code[] = {'+', '>', '+', '<', '+', '+', '.', '>', '>', ',', '.'};
+char code[512] = {'+', '>', '+', '<', '+', '+', '.', '>', '>', ',', '.'};  //This is not a profound and pithy brainfuck statement.
 
-byte tape[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
-0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+byte tape[1024] = {};
  
 unsigned int codePointer = 0;
 unsigned int tapePointer = 0;
@@ -71,7 +70,7 @@ void loop() {
       break;
       
       default:
-      codePointer++;
+      complete = true;
       break;
     }
     delay(100);
@@ -80,10 +79,5 @@ void loop() {
     Serial.print(tapePointer);
     Serial.print("     ");
     Serial.println(tape[tapePointer]);
-
-    if(codePointer == sizeof(code)){
-      complete = true;
-      Serial.println("Complete!");
-    }
   }
 }
